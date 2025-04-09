@@ -17,10 +17,12 @@
       height: 100vh;
     }
     #flipbook {
-      width: 90vw;
-      height: 90vh;
+      width: 1200px;
+      height: 850px;
     }
     #flipbook .page {
+      width: 600px;
+      height: 850px;
       background-color: #000;
     }
     #flipbook img {
@@ -32,14 +34,13 @@
 </head>
 <body>
   <div id="flipbook">
-    <!-- 範例頁面，可擴充 -->
     <div class="page"><img src="images/page1.jpg"/></div>
     <div class="page"><img src="images/page2.jpg"/></div>
   </div>
   <script>
     $('#flipbook').turn({
-      width: document.getElementById('flipbook').clientWidth,
-      height: document.getElementById('flipbook').clientHeight,
+      width: 1200,
+      height: 850,
       autoCenter: true,
       acceleration: true,
       gradients: true,
