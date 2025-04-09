@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>弦韻交響 - 線上節目冊</title>
+  <!-- 引入 jQuery 库 -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- ✅ 改用線上 CDN 的 turn.js -->
+  <!-- 引入 Turn.js 库 -->
   <script src="https://cdn.jsdelivr.net/gh/blivesta/turn.js@4/turn.min.js"></script>
   <style>
     body {
@@ -33,11 +34,9 @@
 </head>
 <body>
   <div id="flipbook">
-    <!-- 請根據實際頁數加入 -->
     <div class="page"><img src="images/page1.jpg"/></div>
     <div class="page"><img src="images/page2.jpg"/></div>
-    <div class="page"><img src="images/page3.jpg"/></div>
-    <div class="page"><img src="images/page4.jpg"/></div>
+    <!-- 根据需要添加更多页面 -->
   </div>
   <script>
     $('#flipbook').turn({
