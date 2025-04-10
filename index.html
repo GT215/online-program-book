@@ -1,56 +1,70 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>弦韻交響 - 線上節目冊（CDN翻頁版）</title>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/blivesta/turn.js@4/turn.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>弦韻交響 - 雙頁翻頁節目冊</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/st-pageflip@2.0.6/dist/css/page-flip.min.css" />
   <style>
-    body {
-      background: #000;
+    html, body {
       margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      height: 100%;
+      background-color: black;
+      overflow: hidden;
     }
     #flipbook {
-      width: 600px;
-      height: 850px;
+      width: 100vw;
+      height: 100vh;
     }
-    #flipbook .page {
-      width: 100%;
-      height: 100%;
-      background-color: #000;
-    }
-    #flipbook img {
+    .page-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+      background-color: black;
     }
   </style>
 </head>
 <body>
-  <div id="flipbook">
-    <div class="page"><img src="images/page1.jpg"/></div>
-    <div class="page"><img src="images/page2.jpg"/></div>
-    <div class="page"><img src="images/page3.jpg"/></div>
-    <div class="page"><img src="images/page4.jpg"/></div>
-    <div class="page"><img src="images/page5.jpg"/></div>
-    <div class="page"><img src="images/page6.jpg"/></div>
-    <div class="page"><img src="images/page7.jpg"/></div>
-    <div class="page"><img src="images/page8.jpg"/></div>
-  </div>
+  <div id="flipbook"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/st-pageflip@2.0.6/dist/js/page-flip.browser.min.js"></script>
   <script>
-    $('#flipbook').turn({
-      width: 600,
-      height: 850,
-      display: 'single',
-      autoCenter: true,
-      acceleration: true,
-      gradients: true,
-      elevation: 50
+    const pageFlip = new St.PageFlip(document.getElementById("flipbook"), {
+      width: 800,   // 單頁寬
+      height: 1120, // 單頁高
+      size: "stretch",
+      minWidth: 315,
+      maxWidth: 2000,
+      minHeight: 400,
+      maxHeight: 3000,
+      maxShadowOpacity: 0.5,
+      showCover: false,
+      mobileScrollSupport: false,
+      useMouseEvents: true,
+      swipeDistance: 30,
+      flippingTime: 600,
+      usePortrait: false,
+      startPage: 0,
+      showPageCorners: true,
+      disableFlipByClick: false
     });
+
+    // 載入圖片頁面（偶數張會變成雙頁）
+    const totalPages = 8; // <<< 根據你的圖片張數調整
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push({
+        src: `images/page${i}.jpg`,
+        class: "page-img"
+      });
+    }
+
+    // 初始化
+    pageFlip.loadFromImages(pages.map(p => {
+      const el = document.createElement("img");
+      el.src = p.src;
+      el.className = p.class;
+      return el;
+    }));
   </script>
 </body>
 </html>
